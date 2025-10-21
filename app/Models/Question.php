@@ -10,14 +10,23 @@ class Question extends Model
     use HasFactory;
 
     protected $fillable = [
-        'quiz_id',
-        'body',
+        // 'quiz_id',
+        'question_text',
         'image_path',
-        'order'
+        'order',
+        'difficulty',
+        'created_by'
     ];
     
     public function quiz() { 
         return $this->belongsTo(Quiz::class); 
+    }
+
+    public function quizzes()
+    {
+        return $this->belongsToMany(Quiz::class, 'quiz_question')
+            ->withPivot('order')
+            ->withTimestamps();
     }
     
     public function options() { 

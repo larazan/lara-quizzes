@@ -13,13 +13,23 @@ class Quiz extends Model
         'category_id',
         'title',
         'description',
+        'image_path',
+        'difficulty',
         'time_limit_seconds',
         'is_published',
+        'is_approved',
         'created_by'
     ];
     
-    public function questions() { 
-        return $this->hasMany(Question::class)->orderBy('order'); 
+    // public function questions() { 
+    //     return $this->hasMany(Question::class)->orderBy('order'); 
+    // }
+
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class, 'quiz_question')
+            ->withPivot('order')
+            ->orderBy('order');
     }
     
     public function attempts() { 

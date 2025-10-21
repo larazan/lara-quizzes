@@ -16,9 +16,11 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->text('description')->nullable();
+            $table->string('image_path')->nullable();
             $table->enum('difficulty', ['easy','medium','hard'])->default('easy');
             $table->unsignedInteger('time_limit_seconds')->nullable(); // null = untimed
             $table->boolean('is_published')->default(false);
+            $table->boolean('is_approved')->default(false);
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });

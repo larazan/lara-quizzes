@@ -5,6 +5,9 @@ import { createApp, h } from "vue";
 import { createInertiaApp, Head, Link } from "@inertiajs/vue3";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy";
 
+// Import Flowbite JS
+import 'flowbite';
+
 import Main from "./Layouts/Main.vue";
 import { setThemeOnLoad } from "./theme";
 

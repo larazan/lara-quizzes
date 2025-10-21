@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('quiz_id')->constrained()->cascadeOnDelete();
-            $table->text('body');
+            // $table->foreignId('quiz_id')->constrained()->cascadeOnDelete();
+            $table->text('question_text');
             $table->string('image_path')->nullable();
+            $table->enum('difficulty', ['easy','medium','hard'])->default('easy');
             $table->unsignedTinyInteger('order')->default(0);
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }
