@@ -13,15 +13,19 @@ return new class extends Migration
     {
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('category_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('type_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('title');
+            $table->string('slug');
             $table->text('description')->nullable();
             $table->string('image_path')->nullable();
             $table->enum('difficulty', ['easy','medium','hard'])->default('easy');
             $table->unsignedInteger('time_limit_seconds')->nullable(); // null = untimed
+            $table->enum('display_mode', ['all', 'one_by_one'])->default('all');
             $table->boolean('is_published')->default(false);
             $table->boolean('is_approved')->default(false);
-            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->boolean('is_private')->default(false);
             $table->timestamps();
         });
     }

@@ -19,6 +19,7 @@ const show = ref(false);
             class="p-6 mx-auto max-w-screen-lg flex items-center justify-between"
         >
             <NavLink routeName="home" componentName="Home">Home</NavLink>
+            <NavLink routeName="quizzes" componentName="Quiz">Quiz</NavLink>
 
             <div class="flex items-center space-x-6">
                 <!-------------- Auth -------------->
@@ -28,7 +29,7 @@ const show = ref(false);
                         class="flex items-center gap-2 px-3 py-1 rounded-lg hover:bg-slate-700 cursor-pointer"
                         :class="{ 'bg-slate-700': show }"
                     >
-                        <p>{{ user.name }}</p>
+                        <p>{{ user.first_name }} {{ user.last_name }}</p>
                         <i class="fa-solid fa-angle-down"></i>
                     </div>
 

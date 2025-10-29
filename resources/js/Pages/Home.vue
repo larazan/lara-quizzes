@@ -11,7 +11,7 @@ const props = defineProps({
     searchTerm: String,
 });
 
-const username = params.user_id ? props.listings.data.find(i => i.user_id === Number(params.user_id)).user.name : null;
+const username = params.user_id ? props.listings.data.find(i => i.user_id === Number(params.user_id)).user.username : null;
 
 const form = useForm({
     search: props.searchTerm,

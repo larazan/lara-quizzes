@@ -1,11 +1,30 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+// use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuizPlayController;
+
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\QuizController;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
+
+
+//admin routes
+
+// Route::group(['prefix' => 'admin', 'middleware' => 'redirectAdmin'], function () {
+//     Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+//     Route::post('login', [AdminAuthController::class, 'login'])->name('admin.login.post');
+//     Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
+// });
+
+// Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+//     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
+// });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('verified')->name('dashboard');
@@ -18,6 +37,16 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/', [ListingController::class, 'index'])->name('home');
 Route::resource('listing', ListingController::class)->except('index');
+
+Route::get('/quizzes', [QuizController::class,'index'])->name('quizzes');
+Route::resource('quizzes', QuizController::class)->except('index');
+
+Route::prefix('quiz')->name('quiz.')->group(function () {
+    Route::get('{quiz}/start', [QuizPlayController::class, 'start'])->name('start');
+    Route::post('save-answer', [QuizPlayController::class, 'saveAnswer'])->name('saveAnswer');
+    Route::post('submit', [QuizPlayController::class, 'submit'])->name('submit');
+    Route::get('results/{attempt}', [QuizPlayController::class, 'results'])->name('results');
+});
 
 // Admin Routes
 Route::middleware(['auth', 'verified', Admin::class])

@@ -14,6 +14,7 @@ class Question extends Model
         'question_text',
         'image_path',
         'order',
+        'is_private',
         'difficulty',
         'created_by'
     ];

@@ -55,7 +55,7 @@ const selectTag = (tag) => {
                         class="text-link"
                         @click="selectUser(listing.user.id)"
                     >
-                        {{ listing.user.name }}
+                        {{ listing.user.username }}
                     </button>
                 </p>
             </div>

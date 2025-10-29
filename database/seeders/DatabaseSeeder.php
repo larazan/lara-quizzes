@@ -14,15 +14,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(3)->create();
-        // Listing::factory(40)->create();
-
-        CategorySeeder::class;
-        QuizzesSeeder::class;
-        QuestionSeeder::class;
-        QuizQuestionSeeder::class;
-        AttemptSeeder::class;
-        OptionSeeder::class;
-        AnswerSeeder::class;
+        User::factory(3)->create();
+        Listing::factory(40)->create();
+        
+        $this->call([
+            CategorySeeder::class,
+            TypeSeeder::class,
+            QuizzesSeeder::class,
+            QuestionSeeder::class,
+            OptionSeeder::class,
+            QuizQuestionSeeder::class,
+            AttemptSeeder::class,
+            AnswerSeeder::class,
+        ]);
     }
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('image_path')->nullable();
             $table->enum('difficulty', ['easy','medium','hard'])->default('easy');
             $table->unsignedTinyInteger('order')->default(0);
+            $table->boolean('is_private')->default(false);
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });

@@ -8,7 +8,7 @@ import ErrorMessages from "../../Components/ErrorMessages.vue";
 import { useForm } from "@inertiajs/vue3";
 
 const form = useForm({
-    name: "",
+    username: "",
     email: "",
     password: "",
     password_confirmation: "",
@@ -35,7 +35,7 @@ const submit = () => {
         <ErrorMessages :errors="form.errors"/>
 
         <form @submit.prevent="submit" class="space-y-6">
-            <InputField label="Name" icon="id-badge" v-model="form.name" />
+            <InputField label="Username" icon="id-badge" v-model="form.username" />
 
             <InputField
                 label="Email"
